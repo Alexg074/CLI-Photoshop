@@ -1,0 +1,79 @@
++------------------------------------------------+
+|                                       	     |
+|                                                |
+|       Copyright Georgescu Mihai-Alexandru      |
+|               	  322 CA                     |
+|                                                |
+|                                                |
++------------------------------------------------+
+
+=========================  Description  ================================
+
+-> This program manipulates an image given as input. We can deal with
+either RGB or grayscale images.
+-> The user can load and save an image, select portions of it which
+can be later on modified (rotated or cropped).
+
+============================== LOAD <file> =============================
+
+-> By using this command, the user can load a PBM image, file which 
+contains a magic word (referring to the type of image - RGB / grayscale 
+and type of file: ASCII or binary), the dimensions of the imagine, a 
+maximum pixel value and the matrix representing the actual image.
+
+========================= SELECT <x1> <y1> <x2> <y2> ===================
+
+-> By using this command, the user selects a portion of the image in the 
+[x1,x2), [y1,y2) interval. 
+-> The x and y values can't be negative and they can't pass the 
+dimensions of the image. 
+-> If a selection is invalid the last valid selection keeps being stored.
+->When an image is loaded, the selection is the whole image.
+
+============================== SELECT ALL ===============================
+
+-> By using this command, the user selects the whole image.
+
+============================= ROTATE <angle> ============================
+
+-> By using this command, the user rotates an image by an angle 
+(0, +-90, +-180, +-270, +-360).
+-> He/ she can either rotate the whole image, or a square selection of it.
+-> I implemented a function that rotates the image by 90 degrees, then I
+call it multiple times, depending on the angle given by the user.
+-> I pay close attention to the dimensions of the rotated matrix while
+creating it.
+
+============================== CROP =====================================
+
+-> By using this command, the user crops the image to the previous selection
+made.
+-> I can create a new cropped matrix based on the selected area of the
+initial matrix, then also update its dimensions.
+
+========================== APPLY <filter> ===============================
+
+-> Unfortunately I didn't manage to solve a Seg Fault which doesn't allow
+the APPLY action to be performed, even though the code itself looks good
+to me. I left the code I implemented with "//" in the "filters.c" file,
+that's why my coding style apparently also fails:(
+Any feeback would be appreciated. Thanks.
+
+-> By using this command, should be able to apply a certain filter to the
+image, from the following range of effects:
+
+- EDGE
+- SHARPEN
+- BLUR
+- GAUSSIAN_BLUR
+
+-> The command only affects the selected pixels. The pixels from the image
+borders stay the same. The implementation is based on multiplying the old
+pixel with each element of the kernel matrix for each filter.
+
+============================== SAVE <file> [ascii] ======================
+
+-> By using this command, the user saves the current image. 
+-> To save the image in ascii he/she must specify, otherwise the program 
+will save the image in binary.
+========================================================================
